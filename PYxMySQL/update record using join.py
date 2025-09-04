@@ -3,10 +3,10 @@ from datetime import datetime
 import mysql.connector
 conn= mysql.connector.connect(
     host="localhost",
-    port=3306,
+    port=your_port_number,
     user="root",
     password="",
-    database="soumy1a"
+    database="name_of_databse"
 )
 cursor= conn.cursor()
 user_id= int(input("Enter the id of the record to be updated: "))
@@ -67,4 +67,5 @@ if result:
     conn.commit()
     print("Record updated successfully.")
     cursor.close()
+
     conn.close()
