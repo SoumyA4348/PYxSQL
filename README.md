@@ -8,7 +8,7 @@ A Python + MySQL project demonstrating end-to-end database operations: table cre
 - Insert, update, and delete records
 - CRUD via user input
 - SQL JOIN queries across related tables
-- Login / credential verification workflow
+- Registration and login with salted scrypt password hashes (`auth.py`; no plaintext passwords stored)
 - Auto-calculate averages with aggregate functions
 
 ## Setup
@@ -33,6 +33,27 @@ A Python + MySQL project demonstrating end-to-end database operations: table cre
    ```
 
 This creates the database, tables, inserts sample data, runs updates/deletes, and prints results.
+
+## Schema
+
+```
+info(id PK, name, age, email UNIQUE)
+contact(contact_id PK, id FK -> info.id ON DELETE CASCADE, phone_number)
+login(id PK, username UNIQUE, password_hash)
+```
+
+Each table is in 3NF: every non-key column depends only on its table's primary key. One person (`info`) can have many `contact` rows, and deleting a person removes their contacts.
+
+All queries use parameterized `%s` placeholders, and every write is committed or rolled back as one transaction.
+
+## Tests
+
+```bash
+pip install -r requirements.txt
+pytest
+```
+
+The tests mock the database connection, so they run without a MySQL server.
 
 ## Tech Stack
 
