@@ -1,5 +1,7 @@
 # PYxSQL
 
+[![tests](https://github.com/SoumyA4348/PYxSQL/actions/workflows/tests.yml/badge.svg)](https://github.com/SoumyA4348/PYxSQL/actions/workflows/tests.yml)
+
 A Python + MySQL project demonstrating end-to-end database operations: table creation, CRUD, relational queries, authentication, and automated calculations.
 
 ## Features
